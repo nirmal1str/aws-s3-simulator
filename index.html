@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS S3 Simulator | DA-3</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Custom Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <!-- Top Navigation Bar -->
+    <header class="aws-nav">
+        <div class="nav-left">
+            <div class="logo-wrapper">
+                <i class="fa-brands fa-aws logo"></i>
+            </div>
+            <span class="service-name">S3 Simulator Panel</span>
+        </div>
+        <div class="nav-right">
+            <!-- DARK MODE TOGGLE -->
+            <button id="theme-toggle" class="icon-btn theme-btn" title="Toggle Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <span class="badge">DA-3 Assignment</span>
+            <div class="user-profile">
+                <i class="fa-solid fa-user-astronaut"></i>
+                <span>Admin User</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Storage Buckets</h2>
+                <button id="create-bucket-btn" class="aws-btn primary-btn interactive-btn">
+                    <i class="fa-solid fa-plus"></i> Create Bucket
+                </button>
+            </div>
+            <ul id="bucket-list" class="bucket-list custom-scrollbar">
+                <!-- Buckets injected here -->
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content custom-scrollbar">
+            
+            <!-- ENHANCEMENT NEON BANNER -->
+            <div class="enhancement-banner neon-box fade-in">
+                <div class="neon-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div class="banner-text">
+                    <strong>DA-3 Custom Enhancement Active:</strong> Native AWS S3 requires downloads to view files. This simulator features an <em>In-Browser Quick Previewer</em>. Click on any uploaded image or text file name below to instantly preview it!
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="no-bucket-selected" class="empty-state fade-in">
+                <div class="floating-icon">
+                    <i class="fa-solid fa-bucket"></i>
+                </div>
+                <h2>No Bucket Selected</h2>
+                <p>Select a bucket from the sidebar or create a new one to begin managing your cloud storage.</p>
+            </div>
+
+            <!-- Bucket View -->
+            <div id="bucket-view" class="bucket-view hidden fade-in">
+                <div class="bucket-header glass-panel">
+                    <div class="bucket-title">
+                        <i class="fa-solid fa-folder-open text-muted"></i>
+                        <h2 id="current-bucket-name">bucket-name</h2>
+                    </div>
+                    <div class="bucket-actions">
+                        <label for="file-upload" class="aws-btn primary-btn interactive-btn">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload Object
+                        </label>
+                        <input type="file" id="file-upload" class="hidden-input">
+                        <button id="delete-bucket-btn" class="aws-btn danger-btn interactive-btn">
+                            <i class="fa-solid fa-trash-can"></i> Delete Bucket
+                        </button>
+                    </div>
+                </div>
+
+                <div class="objects-table-container glass-panel">
+                    <table class="aws-table">
+                        <thead>
+                            <tr>
+                                <th>Object Name</th>
+                                <th>File Type</th>
+                                <th>Size</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="objects-list">
+                            <!-- Objects injected here -->
+                        </tbody>
+                    </table>
+                    <div id="empty-bucket-state" class="empty-state hidden">
+                        <i class="fa-solid fa-box-open fa-2x text-muted" style="margin-bottom: 10px;"></i>
+                        <p>This bucket is currently empty.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- File Preview Modal -->
+    <div id="preview-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content scale-in">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <i class="fa-solid fa-eye neon-text"></i>
+                    <h3 id="preview-filename">filename.ext</h3>
+                </div>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body custom-scrollbar" id="preview-body">
+                <!-- Preview content goes here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
